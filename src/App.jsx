@@ -1,25 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Import shared layout and page components
 import Navbar from "./components/Navbar";
 import GameList from "./pages/GameList";
-import GameCard from "./components/GameCard"; // assuming GameCard is a component
+import GameCard from "./components/GameCard";
 import FavoriteList from "./pages/FavoriteList";
 import AddFavoriteForm from "./pages/AddFavoriteForm";
-import Login from "./pages/Login"; // or components/Authentication
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import { AuthProvider } from "./components/Authentication";
-import Signup from "./pages/SignUp";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="app">
-          {/* Always visible */}
           <Navbar />
-
-          {/* Route-based rendering */}
           <Routes>
             <Route path="/" element={<GameList />} />
             <Route path="/favorites" element={<FavoriteList />} />

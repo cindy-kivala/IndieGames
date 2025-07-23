@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../components/Authentication";
 
 export default function Login() {
@@ -8,6 +8,8 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const location = useLocation();
+  const signupSuccess = location.state?.signupSuccess;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <h2>Login to IndieGamesApp ⚔️</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
@@ -41,9 +43,14 @@ export default function Login() {
         />
 
         {error && <p style={{ color: "red" }}>{error}</p>}
+        {signupSuccess && <p style={{ color: "green" }}>Signup successful! Please log in.</p>}
 
         <button type="submit">Login</button>
       </form>
+
+      <p>
+        Don’t have an account? <Link to="/signup">Sign up</Link>
+      </p>
     </div>
   );
 }

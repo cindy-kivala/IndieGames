@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../components/Authentication";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ export default function Signup() {
     if (email && password.length >= 6) {
       const success = await signup(email, password); 
       if (success) {
-        navigate("/games");
+        navigate("/login", { state: { signupSuccess: true }});
       } else {
         setError("Signup failed. Email may already be in use.");
       }
@@ -25,7 +25,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-container">
+    <div className="auth-container">
       <h2>Create an Account</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
@@ -37,7 +37,7 @@ export default function Signup() {
         />
 
         <label>Password (min 6 chars):</label>
-        <input 
+        <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -48,6 +48,10 @@ export default function Signup() {
 
         <button type="submit">Sign Up</button>
       </form>
+
+      <p>
+        Already have an account? <Link to="/login">Log in</Link>
+      </p>
     </div>
   );
 }

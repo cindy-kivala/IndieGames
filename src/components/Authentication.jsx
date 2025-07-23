@@ -1,58 +1,60 @@
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
   
-  const login = async (email, password) => {
-    try {
-      const res = await fetch("http://localhost:3001/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+const login = async (email, password) => {
+  try {
+    const res = await fetch(`http://localhost:3001/users?email=${email}`);
+    const users = await res.json();
+    const user = users[0];
 
-      if (!res.ok) throw new Error("Login failed");
+    if (user && user.password === password) {
+      setUser(user);
+      setToken("mock-token"); // set fake token for frontend purposes
 
-      const data = await res.json();
-      setUser(data.user);
-      setToken(data.token);
-
-    
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", "mock-token");
+      localStorage.setItem("user", JSON.stringify(user));
 
       return true;
-    } catch (err) {
-      console.error("Login error:", err.message);
-      return false;
     }
-  };
+
+    return false;
+  } catch (err) {
+    console.error("Login error:", err.message);
+    return false;
+  }
+};
+
 
   
-  const signup = async (email, password) => {
+    const signup = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:3000/signup", {
+      const res = await fetch(`http://localhost:3001/users?email=${email}`);
+      const data = await res.json();
+
+      if (data.length > 0) {
+        
+        return false;
+      }
+
+      const response = await fetch(`http://localhost:3001/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      if (!res.ok) throw new Error("Signup failed");
+      if (!response.ok) throw new Error("Signup failed");
 
-      const data = await res.json();
-      setUser(data.user);
-      setToken(data.token);
-
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
+      const newUser = await response.json();
+      setUser(newUser);
       return true;
     } catch (err) {
-      console.error("Signup error:", err.message);
+      console.error("Signup error:", err);
       return false;
     }
   };
