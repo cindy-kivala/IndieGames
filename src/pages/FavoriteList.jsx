@@ -25,6 +25,24 @@ function FavoriteList() {
            });
     }, []);
 
+    //what if we want to delete a favorite?
+    //we could add a delete button to each game card
+    //and then handle the delete request in the backend
+    //HANDLE DELETE REQUEST
+
+    function handleDelete(id) {
+        fetch('https://localhost:3001/favorites/${id}', {
+            method: "DELETE",
+        })
+        .then(() => {
+            //filter out the deleted game from the favorites list + UI
+             const updatedFavorites = favorites.filter((game) => game.id !== id);
+             setFavorites(updatedFavorites);
+        })
+        //in case of an error
+        .catch((error) => console.error("Oops! Failed to delete fave game", error));
+    }
+
     //What if the list in empty?
     if (favorites.length === 0) {
         return (
@@ -45,15 +63,16 @@ function FavoriteList() {
             <h2>My Favorite Games</h2>
             <div className="favorite-list-container">
                 {favorites.map(function (game) {
-                    return (
                         <div key={game.id} className="favorite-game-card">
                             <img src={game.thumbnail}  alt={game.title} />
                             <h3>{game.title}</h3>
                             <p>{game.genre}</p>
                             <p>{game.platform}</p>
                             <p>{game.release_date}</p> 
+                            <button onClick={() => handleDelete(game.id)} className="RemoveBtn">
+                                Remove from Favorites
+                            </button>
                         </div>
-                    );
                 })}
             </div>
         </div>
