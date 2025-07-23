@@ -12,7 +12,7 @@ function Navbar({ onSearch }) {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="logo">🎮 IndieGames Hub</h1>
+        <h1 className="logo">🎮 IndieGames App</h1>
         <ul className="nav-links">
           <li>
             <NavLink to="/" end className="nav-link" activeclassname="active">Home</NavLink>
