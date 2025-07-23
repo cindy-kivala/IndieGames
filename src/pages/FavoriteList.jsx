@@ -7,4 +7,21 @@ import React, { useState, useEffect } from 'react';
 function FavoriteList() {
     //we want to store the list of fave games
     const [favorites, setFavorites] = useState([]);
+
+    //2. Fetch data from backend when components mond
+    //ENSURE BACKEND IS WORKING CORRECTLY
+    useEffect(function() {
+        fetch("http://localhost:3001/favorites")
+           .then(function (response) {
+             return response.json();
+           }) 
+           //unwrap
+           .then(function (data) {
+            setFavorites(data);
+           })
+           //catch any errors
+           .catch(function (error) {
+            console.error("Ooops! Failed to fetch your favorites", error);
+           });
+    }, []);
 }
