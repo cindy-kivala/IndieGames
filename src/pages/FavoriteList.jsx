@@ -10,18 +10,28 @@ function FavoriteList() {
 
     //2. Fetch data from backend when components mond
     //ENSURE BACKEND IS WORKING CORRECTLY
-    useEffect(function() {
+    useEffect(() => {
         fetch("http://localhost:3001/favorites")
-           .then(function (response) {
+           .then((response) => {
+            if (!response.ok) throw new Error("Failed to fetch")
              return response.json();
            }) 
            //unwrap
-           .then(function (data) {
+           .then((data) => {
+            if (Array.isArray(data)) {
+                //if data is an array, set it to favorites
             setFavorites(data);
+            }
+            else {
+                //if data is not an array, log an error
+                console.error("Expected an array of favorites, but got:", data);
+                setFavorites([]);//our fallback code
+            }
            })
            //catch any errors
-           .catch(function (error) {
+           .catch((error) => {
             console.error("Ooops! Failed to fetch your favorites", error);
+            setFavorites([]); // another fallback code
            });
     }, []);
 
@@ -31,7 +41,7 @@ function FavoriteList() {
     //HANDLE DELETE REQUEST
 
     function handleDelete(id) {
-        fetch('https://localhost:3001/favorites/${id}', {
+        fetch(`https://localhost:3001/favorites/${id}`, {
             method: "DELETE",
         })
         .then(() => {
