@@ -38,4 +38,35 @@ function FavoriteList() {
             </div>
         );
     }
+
+    //If we have favorites, we want to display them
+    return (
+        <div className='favorite-list'>
+            <h2>My Favorite Games</h2>
+            <div className="favorite-list-container">
+                {favorites.map(function (game) {
+                    return (
+                        <div key={game.id} className="favorite-game-card">
+                            <img src={game.thumbnail}  alt={game.title} />
+                            <h3>{game.title}</h3>
+                            <p>{game.genre}</p>
+                            <p>{game.platform}</p>
+                            <p>{game.release_date}</p> 
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
 }
+
+export default FavoriteList;
+
+//CONFIRM IF I'LL KEEP PLATFORM AND RELEASE DATE
+//FIGURE OUT HOW OIR DISPLAY WILL LOOK
+//This component fetches the user's favorite games from the backend and displays them in a list format
+//Each game is displayed with its thumbnail, title, genre, platform, and release date
+//If there are no favorite games, a message is displayed indicating that there are no favorites yet
+//The component uses the useState and useEffect hooks to manage state and side effects respectively
+//The useEffect hook fetches the data from the backend when the component mounts and updates the state with the fetched data
+//The component also handles any errors that may occur during the fetch operation   
