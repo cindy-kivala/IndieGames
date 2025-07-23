@@ -7,7 +7,7 @@ import { useState } from "react"
 function AddFavouriteForm(){
   const [title, setTitle] = useState(null);
   const [genre, setGenre] = useState(null);
-  const [image, setImage] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
   const newGame ={
     title: title,
@@ -16,8 +16,12 @@ function AddFavouriteForm(){
  }
 
     return(
-        <Form >
+        <Form id="Form">
+
 
         </Form>
     )
 }
+
+
+export default AddFavouriteForm
