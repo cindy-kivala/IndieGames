@@ -8,26 +8,29 @@ import GameCard from "./components/GameCard"; // assuming GameCard is a componen
 import FavoriteList from "./pages/FavoriteList";
 import AddFavoriteForm from "./pages/AddFavoriteForm";
 import Login from "./pages/Login"; // or components/Authentication
+import { AuthProvider } from "./components/Authentication";
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        {/* Always visible */}
-        <Navbar />
+    <AuthProvider>
+      <Router>
+        <div className="app">
+          {/* Always visible */}
+          <Navbar />
 
-        {/* Route-based rendering */}
-        <Routes>
-          <Route path="/" element={<GameList />} />
-          <Route path="/favorites" element={<FavoriteList />} />
-          <Route path="/add" element={<AddFavoriteForm />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/game/:id" element={<GameCard />} />
-          {/* Add fallback route */}
-          <Route path="*" element={<h2>404 - Page Not Found</h2>} />
-        </Routes>
-      </div>
-    </Router>
+          {/* Route-based rendering */}
+          <Routes>
+            <Route path="/" element={<GameList />} />
+            <Route path="/favorites" element={<FavoriteList />} />
+            <Route path="/add" element={<AddFavoriteForm />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} /> {/* optional */}
+            <Route path="/game/:id" element={<GameCard />} />
+            <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
