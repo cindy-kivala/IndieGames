@@ -1,8 +1,9 @@
 //Component to allow user to add new favorite games
 //Fetches list of favorite games list from local server and adds updates (POST)
-//
+
 
 import { useState } from "react"
+import FavoriteList from "./FavoriteList"
 
 function AddFavouriteForm(){
   const [title, setTitle] = useState(null);
@@ -23,12 +24,32 @@ function AddFavouriteForm(){
  }
 
  //Add updates (new fav game) to local server
- fetch("http://localhost:3000/favorites", {method: 'POST'})
+ fetch("http://localhost:3001/favorites", {method: 'POST'})
  .then((res)=>res.json)
  .then((data)=>{onAddFavorite(data)})
+ 
+ setTitle("");
+ setGenre("");
+ setImage("");
+
+
 
     return(
-        <Form id="Form">
+        <Form id="Form" onSubmit={handleSubmit}>
+          <input //title
+          type="text"
+          value={title}
+          placeholder="Enter Game Title"
+           onChange={((e)=> setTitle(e.target.value))}   
+          />
+
+          <input //genre
+          type="text"
+          value="genre"
+          placeholder="Enter Game Genre"
+          />
+          
+          
 
 
         </Form>
