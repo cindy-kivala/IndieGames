@@ -24,4 +24,18 @@ function FavoriteList() {
             console.error("Ooops! Failed to fetch your favorites", error);
            });
     }, []);
+
+    //What if the list in empty?
+    if (favorites.length === 0) {
+        return (
+            <div className='favorite-list'>
+                <h2>
+                    My Favorite Games
+                </h2>
+                <p>
+                    No favorite games yet.
+                </p>
+            </div>
+        );
+    }
 }
