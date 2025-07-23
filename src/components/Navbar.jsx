@@ -9,13 +9,13 @@ function Navbar(){
       <h1 className="logo">🎮 IndieGames Hub</h1>
       <ul className="nav-links">
         <li>
-          <NavLink to="/" end activeclassname="active">Home</NavLink>
+          <NavLink to="/" end  className="nav-link" activeclassname="active">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/games" activeclassname="active">Games</NavLink>
+          <NavLink to="/games" className="nav-link" activeclassname="active">Games</NavLink>
         </li>
         <li>
-          <NavLink to="/favorites" activeclassname="active">Favorites</NavLink>
+          <NavLink to="/favorites" className="nav-link" activeclassname="active">Favorites</NavLink>
         </li>
       </ul>
     </nav>
