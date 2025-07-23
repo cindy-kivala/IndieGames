@@ -1,4 +1,3 @@
-// Components/Authentication.jsx
 import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
@@ -7,9 +6,10 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
+  
   const login = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch("http://localhost:3001/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -20,13 +20,19 @@ export function AuthProvider({ children }) {
       const data = await res.json();
       setUser(data.user);
       setToken(data.token);
+
+    
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       return true;
     } catch (err) {
-      console.error(err.message);
+      console.error("Login error:", err.message);
       return false;
     }
   };
 
+  
   const signup = async (email, password) => {
     try {
       const res = await fetch("http://localhost:3000/signup", {
@@ -40,9 +46,13 @@ export function AuthProvider({ children }) {
       const data = await res.json();
       setUser(data.user);
       setToken(data.token);
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       return true;
     } catch (err) {
-      console.error(err.message);
+      console.error("Signup error:", err.message);
       return false;
     }
   };
@@ -50,6 +60,8 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setUser(null);
     setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (
