@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState,useEffect}from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import shared layout and page components
@@ -10,10 +10,17 @@ import AddFavoriteForm from "./pages/AddFavoriteForm";
 import Login from "./pages/Login"; // or components/Authentication
 
 function App() {
+  const [games,setGames]=useState([])
+  useEffect(()=>{
+    fetch(`${import.meta.env.VITE_API_URL}/games`)
+    .then((r)=>r.json())
+    .then(data=>setGames(data))
+  },[])
   return (
     <Router>
       <div className="app">
         {/* Always visible */}
+
         <Navbar />
 
         {/* Route-based rendering */}
