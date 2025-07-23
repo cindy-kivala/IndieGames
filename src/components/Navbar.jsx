@@ -3,14 +3,20 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [darkMode, setDarkMode] = useState(false); // Track dark/light mode
 
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(searchQuery);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle('dark-theme', !darkMode);
+  };
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${darkMode ? 'dark-theme' : ''}`}>
       <div className="navbar-left">
         <h1 className="logo">🎮 IndieGames App</h1>
         <ul className="nav-links">
@@ -26,19 +32,24 @@ function Navbar({ onSearch }) {
         </ul>
       </div>
       
-      <div className="search-container">
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="Search games..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
-          <button type="submit" className="search-button">
-            🔍
-          </button>
-        </form>
+      <div className="navbar-right">
+        <div className="search-container">
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Search games..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            <button type="submit" className="search-button">
+              🔍
+            </button>
+          </form>
+        </div>
+        <button onClick={toggleDarkMode} className="theme-toggle">
+          {darkMode ? '☀️' : '🌙'}
+        </button>
       </div>
     </nav>
   );
