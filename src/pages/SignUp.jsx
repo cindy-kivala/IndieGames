@@ -1,0 +1,53 @@
+import { useState } from "react";
+import { useAuth } from "../components/Authentication";
+import { useNavigate } from "react-router-dom";
+
+export default function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { signup } = useAuth(); 
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (email && password.length >= 6) {
+      const success = await signup(email, password); 
+      if (success) {
+        navigate("/games");
+      } else {
+        setError("Signup failed. Email may already be in use.");
+      }
+    } else {
+      setError("Password must be at least 6 characters.");
+    }
+  };
+
+  return (
+    <div className="signup-container">
+      <h2>Create an Account</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label>Password (min 6 chars):</label>
+        <input 
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
+}

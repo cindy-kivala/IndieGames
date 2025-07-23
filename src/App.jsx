@@ -9,6 +9,7 @@ import FavoriteList from "./pages/FavoriteList";
 import AddFavoriteForm from "./pages/AddFavoriteForm";
 import Login from "./pages/Login"; // or components/Authentication
 import { AuthProvider } from "./components/Authentication";
+import Signup from "./pages/SignUp";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <Route path="/favorites" element={<FavoriteList />} />
             <Route path="/add" element={<AddFavoriteForm />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} /> {/* optional */}
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/game/:id" element={<GameCard />} />
             <Route path="*" element={<h2>404 - Page Not Found</h2>} />
           </Routes>
