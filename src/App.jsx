@@ -1,21 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Import shared layout and page components
+import Navbar from "./components/Navbar";
+import GameList from "./pages/GameList";
+import GameCard from "./components/GameCard"; // assuming GameCard is a component
+import FavoriteList from "./pages/FavoriteList";
+import AddFavoriteForm from "./pages/AddFavoriteForm";
+import Login from "./pages/Login"; // or components/Authentication
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="app">
+        {/* Always visible */}
+        <Navbar />
+
+        {/* Route-based rendering */}
+        <Routes>
+          <Route path="/" element={<GameList />} />
+          <Route path="/favorites" element={<FavoriteList />} />
+          <Route path="/add" element={<AddFavoriteForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/game/:id" element={<GameCard />} />
+          {/* Add fallback route */}
+          <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+        </Routes>
       </div>
+<<<<<<< HEAD
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
@@ -33,6 +45,10 @@ function App() {
 
     </>
   )
+=======
+    </Router>
+  );
+>>>>>>> 4a54e49568403cc779e2b9d7e313dbf04d671585
 }
 
-export default App
+export default App;
