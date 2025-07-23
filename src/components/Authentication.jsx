@@ -15,7 +15,7 @@ const login = async (email, password) => {
 
     if (user && user.password === password) {
       setUser(user);
-      setToken("mock-token"); // set fake token for frontend purposes
+      setToken("mock-token"); 
 
       localStorage.setItem("token", "mock-token");
       localStorage.setItem("user", JSON.stringify(user));

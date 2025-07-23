@@ -24,7 +24,8 @@ export default function Login() {
 
   return (
     <div className="auth-container">
-      <h2>Login to IndieGamesApp ⚔️</h2>
+      <h2>🛸 IndieGamesApp Login</h2>
+
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input

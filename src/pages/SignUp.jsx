@@ -26,7 +26,8 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
-      <h2>Create an Account</h2>
+      <h2>🚀 Create Your IndieGames Account</h2>
+
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input
