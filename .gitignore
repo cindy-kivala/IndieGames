@@ -23,10 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment files
 .env
 .env.production
 .env.*
 
 .netlify/
+
 
