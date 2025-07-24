@@ -11,7 +11,7 @@ function FavoriteList() {
     //2. Fetch data from backend when components mond
     //ENSURE BACKEND IS WORKING CORRECTLY
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/favorites`)
+        fetch(`${import.meta.env.VITE_API_URL}/favorites`)
            .then((response) => {
             if (!response.ok) throw new Error("Failed to fetch")
              return response.json();
@@ -41,7 +41,7 @@ function FavoriteList() {
     //HANDLE DELETE REQUEST
 
     function handleDelete(id) {
-        fetch(`https://localhost:3001/favorites/${id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/favorites/${id}`, {
             method: "DELETE",
         })
         .then(() => {
@@ -72,7 +72,7 @@ function FavoriteList() {
         <div className='favorite-list'>
             <h2>My Favorite Games</h2>
             <div className="favorite-list-container">
-                {favorites.map(function (game) {
+                {favorites.map((game) => (
                         <div key={game.id} className="favorite-game-card">
                             <img src={game.thumbnail}  alt={game.title} />
                             <h3>{game.title}</h3>
@@ -83,7 +83,7 @@ function FavoriteList() {
                                 Remove from Favorites
                             </button>
                         </div>
-                })}
+                ))}
             </div>
         </div>
     );
