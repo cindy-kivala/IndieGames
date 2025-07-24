@@ -1,68 +1,136 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #000;
+  background-image: url('https://cdn.mos.cms.futurecdn.net/ACdzWZfdLaDdriwcnprmUV.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #00ffee;
+  overflow-x: hidden;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.auth-container {
+  max-width: 420px;
+  margin: 6rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #101020cc, #1a1a2dcc);
+  border-radius: 1.2rem;
+  border: 2px solid #00ffdd;
+  box-shadow:
+    0 0 20px #00ffee33,
+    0 0 40px #00ffee22,
+    0 0 60px #00ffee11;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(8px);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffaa, #00f2ff, #8f00ff, #00ffaa);
+  background-size: 600% 600%;
+  animation: glowBorder 8s ease infinite;
+  z-index: -1;
+  filter: blur(10px);
+  border-radius: 1.2rem;
+}
+
+@keyframes glowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.auth-container h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  color: #ff5aff;
+  text-shadow:
+    0 0 6px #ff00cc,
+    0 0 12px #00ffee;
+}
+
+.auth-container label {
+  display: block;
+  text-align: left;
+  margin: 1.2rem 0 0.5rem;
+  font-weight: bold;
+  color: #d2ffff;
+  letter-spacing: 0.5px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  border: 2px solid #00ffaa44;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+  font-size: 1rem;
+  box-shadow: inset 0 0 5px #00ffaa22;
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-container input:focus {
+  outline: none;
+  border-color: #00ffaa;
+  box-shadow: 0 0 10px #00ffaa88, inset 0 0 8px #00ffaa22;
+}
+
+.auth-container button {
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0f0f0f;
+  background: linear-gradient(90deg, #00ffaa, #00f2ff);
+  border: none;
+  border-radius: 0.6rem;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  box-shadow: 0 0 12px #00ffaa88;
+  transition: all 0.3s ease-in-out;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.auth-container button:hover {
+  background: linear-gradient(90deg, #00f2ff, #00ffaa);
+  box-shadow: 0 0 20px #00ffccaa, 0 0 30px #00ffaa66;
+}
+
+.auth-container p {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.auth-container a {
+  color: #ff00cc;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+}
+
+.auth-container a:hover {
+  color: #00ffee;
+  text-shadow: 0 0 6px #00ffee;
+  text-decoration: underline;
+}
+
+.auth-container p[style*="color: red"] {
+  margin-top: 0.7rem;
+  color: #ff4b5c !important;
+  font-weight: bold;
+}
+
+.auth-container p[style*="color: green"] {
+  margin-top: 0.7rem;
+  color: #00ff88 !important;
+  font-weight: bold;
 }
