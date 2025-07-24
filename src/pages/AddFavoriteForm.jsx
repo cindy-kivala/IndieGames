@@ -51,7 +51,7 @@ function AddFavouriteForm(){
     return(
       
         <form id="Form" onSubmit={handleSubmit}>
-         <h1>Add A New Favorite Game(^_^) </h1>
+         <h1>Add A New Favorite Game</h1>
 
 
 
