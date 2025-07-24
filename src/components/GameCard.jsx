@@ -1,13 +1,15 @@
-function GameCard({game}){
+import {useParams} from "react-router-dom"
+function GameCard({games}){
+    const {id}= useParams()
+    const game=games.find((g)=>g.id ===parseInt(id));
+    if(!game) return <p>Game not found!</p>
     return(
         <div className="gamecard">
             <h3>{game.title}</h3>
-            <img>{game.thumbnail}</img>
+            <img src={game.thumbnail} alt={game.title} />
             <p>Genre:{game.genre}</p>
-            <p>Platform:{game.plartform}</p>
+            <p>Platform:{game.platform}</p>
             <p>Description:{game.short_description}</p>
-
-            
         </div>
     )
 }
