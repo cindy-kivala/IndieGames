@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Import shared layout and page components
+//Import shared layout and page components
 //import Navbar from "./components/Navbar";
 //import GameList from "./pages/GameList";
 //import GameCard from "./components/GameCard"; // assuming GameCard is a component

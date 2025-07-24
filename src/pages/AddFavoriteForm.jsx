@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 function AddFavouriteForm(){
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
+  const [platform, setPlatform] = useState("");
 
  //function to handle form submission
   const handleSubmit = (e)=> {
@@ -17,29 +17,32 @@ function AddFavouriteForm(){
   const newGame ={
     title: title,
     genre: genre,
-    thumbnail: thumbnail //image url from db.json
+    platform: platform,
+    
      }
 
      //Add updates (new fav game) to local server
-      fetch(`{import.meta.env.VITE_APP_URL}/favorites`, {
+      fetch(`${import.meta.env.VITE_APP_URL}/favorites`, {
       method:"POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newGame)
+      body: JSON.stringify(newGame) //convert newGame obj to json string
      })
-     .then((res)=>res.json())
+     .then((res)=>res.json()) 
      .then((data)=>setFavorite(data)) //
 
     setTitle("");
     setGenre("");
-    setThumbnail("");
+    setPlatform("");
+    
     };
 
  
 
  
     return(
+      
         <form id="Form" onSubmit={handleSubmit}>
-          
+
           <input //title
           type="text"
           id="game-title"
@@ -55,8 +58,13 @@ function AddFavouriteForm(){
           placeholder="Enter Game Genre"
           onChange={(e) => setGenre(e.target.value)}
            />
-
-           
+            <input //platform
+          type="text"
+          id="gaming-platform"
+          value={platform}
+          placeholder="Enter platform e.g PC "
+          onChange={(e) => setPlatform(e.target.value)}
+           />
 
            <button type="submit">Add Game To Favorites</button>
           
