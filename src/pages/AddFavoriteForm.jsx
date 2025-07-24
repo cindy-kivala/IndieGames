@@ -1,9 +1,9 @@
 //Component to allow user to add new favorite games
 //Fetches list of favorite games list from local server and adds updates (POST)
 
+import { useState, useEffect } from "react"
 
-import { useState } from "react"
-import FavoriteList from "./FavoriteList"
+
 
 function AddFavouriteForm(){
   const [title, setTitle] = useState("");
@@ -21,17 +21,17 @@ function AddFavouriteForm(){
      }
 
      //Add updates (new fav game) to local server
-     fetch(`${process.env.REACT_APP_API_URL}/favorites`, {
+      fetch(`{import.meta.env.VITE_APP_URL}/favorites`, {
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newGame)
      })
      .then((res)=>res.json())
-     .then((data)=>setData(data)) //
-  
-  setTitle("");
-  setGenre("");
-  setThumbnail("");
+     .then((data)=>setFavorite(data)) //
+
+    setTitle("");
+    setGenre("");
+    setThumbnail("");
     };
 
  
@@ -39,8 +39,10 @@ function AddFavouriteForm(){
  
     return(
         <form id="Form" onSubmit={handleSubmit}>
+          
           <input //title
           type="text"
+          id="game-title"
           value={title}
           placeholder="Enter Game Title"
            onChange={((e)=> setTitle(e.target.value))}   
@@ -48,19 +50,15 @@ function AddFavouriteForm(){
 
           <input //genre
           type="text"
+          id="game-genre"
           value={genre}
           placeholder="Enter Game Genre"
           onChange={(e) => setGenre(e.target.value)}
            />
 
-           <input 
-           type="text"
-           value={thumbnail}
-           placeholder="Enter Thumbnail URL"
-           onChange={(e)=> setThumbnail(e.target.value)}
-           />
+           
 
-           <button type="submit">Add Game</button>
+           <button type="submit">Add Game To Favorites</button>
           
           
 
