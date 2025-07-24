@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom"
 function GameCard({games}){
     const {id}= useParams()
+    if (!games || games.length === 0) return <p>Loading...</p>;
     const game=games.find((g)=>g.id ===parseInt(id));
     if(!game) return <p>Game not found!</p>
     return(
