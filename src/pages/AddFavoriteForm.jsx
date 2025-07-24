@@ -13,29 +13,29 @@ function AddFavouriteForm(){
  //function to handle form submission
   const handleSubmit = (e)=> {
   e.preventDefault();
-  
-  }
-
 
   const newGame ={
     title: title,
     genre: genre,
     thumbnail: thumbnail //image url from db.json
+     }
+
+  
+  //Add updates (new fav game) to local server
+  
+
+ 
+
  }
 
- //Add updates (new fav game) to local server
- fetch("http://localhost:3001/favorites", {method: 'POST'})
- .then((res)=>res.json)
- .then((data)=>{onAddFavorite(data)})
  
+
  setTitle("");
  setGenre("");
- setImage("");
-
-
+ setThumbnail("");
 
     return(
-        <Form id="Form" onSubmit={handleSubmit}>
+        <form id="Form" onSubmit={handleSubmit}>
           <input //title
           type="text"
           value={title}
@@ -45,14 +45,14 @@ function AddFavouriteForm(){
 
           <input //genre
           type="text"
-          value="genre"
+          value={genre}
           placeholder="Enter Game Genre"
           />
           
           
 
 
-        </Form>
+        </form>
     )
 }
 
