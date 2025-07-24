@@ -58,8 +58,9 @@ function AddFavouriteForm(){
            value={thumbnail}
            placeholder="Enter Thumbnail URL"
            onChange={(e)=> setThumbnail(e.target.value)}
-           
            />
+
+           <button type="submit">Add Game</button>
           
           
 
@@ -69,4 +70,4 @@ function AddFavouriteForm(){
 }
 
 
-export default AddFavouriteForm
+export default AddFavouriteForm;
