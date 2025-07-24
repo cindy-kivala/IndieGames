@@ -6,9 +6,9 @@ import { useState } from "react"
 import FavoriteList from "./FavoriteList"
 
 function AddFavouriteForm(){
-  const [title, setTitle] = useState(null);
-  const [genre, setGenre] = useState(null);
-  const [thumbnail, setThumbnail] = useState('');
+  const [title, setTitle] = useState("");
+  const [genre, setGenre] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
 
  //function to handle form submission
   const handleSubmit = (e)=> {
@@ -20,20 +20,23 @@ function AddFavouriteForm(){
     thumbnail: thumbnail //image url from db.json
      }
 
+     //Add updates (new fav game) to local server
+     fetch(`${process.env.REACT_APP_API_URL}/favorites`, {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newGame)
+     })
+     .then((res)=>res.json())
+     .then((data)=>setData(data)) //
   
-  //Add updates (new fav game) to local server
-  
+  setTitle("");
+  setGenre("");
+  setThumbnail("");
+    };
 
  
 
- }
-
  
-
- setTitle("");
- setGenre("");
- setThumbnail("");
-
     return(
         <form id="Form" onSubmit={handleSubmit}>
           <input //title
@@ -47,7 +50,16 @@ function AddFavouriteForm(){
           type="text"
           value={genre}
           placeholder="Enter Game Genre"
-          />
+          onChange={(e) => setGenre(e.target.value)}
+           />
+
+           <input 
+           type="text"
+           value={thumbnail}
+           placeholder="Enter Thumbnail URL"
+           onChange={(e)=> setThumbnail(e.target.value)}
+           
+           />
           
           
 
