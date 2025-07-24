@@ -20,7 +20,7 @@ function App() {
 
          {/* Route-based rendering */}
          <Routes>
-           <Route path="/" element={<GameList/>}/>
+           {/* <Route path="/" element={<GameList/>}/> */}
            {/* <Route path="/favorites" element={<FavoriteList />} />
            <Route path="/add" element={<AddFavoriteForm />} />
            <Route path="/login" element={<Login />} /> */}
