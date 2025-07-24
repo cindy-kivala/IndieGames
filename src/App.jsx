@@ -28,7 +28,7 @@ function App() {
          </Routes>
        </div>
      </Router>
-   // <FavoriteList />
+
   );
 }
 
