@@ -7,6 +7,7 @@ import GameList from "./pages/GameList";
 //import GameCard from "./components/GameCard"; // assuming GameCard is a component
 //import FavoriteList from "./pages/FavoriteList";
 //import AddFavoriteForm from "./pages/AddFavoriteForm";
+
 //import Login from "./pages/Login"; // or components/Authentication
 
 function App() {
