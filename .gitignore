@@ -29,3 +29,6 @@ dist-ssr
 .env.*
 
 .netlify/
+
+node_modules/
+Json-server-IndieGames-Backend/
