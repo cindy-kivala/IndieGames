@@ -18,7 +18,7 @@ function App() {
       // console.log("fetched games:",data)
       setGames(data)})
   },[])
-   console.log("Games:", games);
+  //  console.log("Games:", games);
   return (
     <>
     <Router>
@@ -39,7 +39,6 @@ function App() {
          </Routes>
        </div>
      </Router>
-      {/* <GameList games={games}/>  */}
     </>
   );
 }
