@@ -1,5 +1,6 @@
 import React from "react";
 import GameCard from "../components/GameCard";
+import { Link } from "react-router-dom";
 
 function GameList({games}){
     return(
