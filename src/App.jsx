@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp";
 
 function App() {
   return (
+
     <AuthProvider>
       <Router>
         <div className="app">
@@ -30,6 +31,7 @@ function App() {
         </div>
       </Router>
     </AuthProvider>
+
   );
 }
 
