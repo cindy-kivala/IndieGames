@@ -1,7 +1,7 @@
 //Component to allow user to add new favorite games
 //Fetches list of favorite games list from local server and adds updates (POST)
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 
 
@@ -23,25 +23,37 @@ function AddFavouriteForm(){
 
      //Add updates (new fav game) to local server
       fetch(`${import.meta.env.VITE_APP_URL}/favorites`, {
-      method:"POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newGame) //convert newGame obj to json string
-     })
-     .then((res)=>res.json()) 
-     .then((data)=>setFavorite(data)) //
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newGame)
+      })
+      .then(res=>{
+        if(!res.ok){
+        throw new Error("error")
+      }
+       return res.json()
+      })
+      .then((data)=>{
+        setTitle("");
+        setGenre("");
+        setPlatform("");
+      })
 
-    setTitle("");
-    setGenre("");
-    setPlatform("");
+       .catch((err) => {
+        console.error("Fetch failed:", err);
+      })
     
     };
 
  
 
- 
+    //form
     return(
       
         <form id="Form" onSubmit={handleSubmit}>
+         <h1>Add A New Favorite Game(^_^) </h1>
+
+
 
           <input //title
           type="text"
@@ -66,7 +78,7 @@ function AddFavouriteForm(){
           onChange={(e) => setPlatform(e.target.value)}
            />
 
-           <button type="submit">Add Game To Favorites</button>
+           <button type="submit">Add</button>
           
           
 
