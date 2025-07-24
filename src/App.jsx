@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import GameList from "./pages/GameList";
 import GameCard from "./components/GameCard";
+import { AuthProvider } from "./components/Authentication";
+
+import GameList from "./pages/GameList";
 import FavoriteList from "./pages/FavoriteList";
 import AddFavoriteForm from "./pages/AddFavoriteForm";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import { AuthProvider } from "./components/Authentication";
 
 function App() {
   return (

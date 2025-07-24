@@ -9,13 +9,14 @@ export function AuthProvider({ children }) {
   
 const login = async (email, password) => {
   try {
-    const res = await fetch(`http://localhost:3001/users?email=${email}`);
+    const cleanedEmail = email.trim().toLowerCase();
+    const res = await fetch(`http://localhost:3001/users?email=${cleanedEmail}`);
     const users = await res.json();
     const user = users[0];
 
     if (user && user.password === password) {
       setUser(user);
-      setToken("mock-token"); 
+      setToken("mock-token");
 
       localStorage.setItem("token", "mock-token");
       localStorage.setItem("user", JSON.stringify(user));
@@ -31,33 +32,34 @@ const login = async (email, password) => {
 };
 
 
-  
-    const signup = async (email, password) => {
-    try {
-      const res = await fetch(`http://localhost:3001/users?email=${email}`);
-      const data = await res.json();
+const signup = async (email, password) => {
+  try {
+    const cleanedEmail = email.trim().toLowerCase();
 
-      if (data.length > 0) {
-        
-        return false;
-      }
+    const res = await fetch(`http://localhost:3001/users?email=${cleanedEmail}`);
+    const data = await res.json();
 
-      const response = await fetch(`http://localhost:3001/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) throw new Error("Signup failed");
-
-      const newUser = await response.json();
-      setUser(newUser);
-      return true;
-    } catch (err) {
-      console.error("Signup error:", err);
-      return false;
+    if (data.length > 0) {
+      return false; 
     }
-  };
+
+    const response = await fetch(`http://localhost:3001/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: cleanedEmail, password }),
+    });
+
+    if (!response.ok) throw new Error("Signup failed");
+
+    const newUser = await response.json();
+    setUser(newUser);
+    return true;
+  } catch (err) {
+    console.error("Signup error:", err);
+    return false;
+  }
+};
+
 
   const logout = () => {
     setUser(null);
