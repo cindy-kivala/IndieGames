@@ -11,25 +11,22 @@ import AddFavoriteForm from "./pages/AddFavoriteForm";
 
 function App() {
   return (
-    
-  //  <Router>
-    //  <div className="app">
-      //  {/* Always visible */}
-        //<Navbar />
-
-        //{/* Route-based rendering */}
-        //<Routes>
-          //<Route path="/" element={<GameList />} />
-          //<Route path="/favorites" element={<FavoriteList />} />
+    <AddFavoriteForm>
+    <Router>
+      <div className="app">
+       {/* Always visible */}
+        <Navbar />
+        <Routes>
+           {/*<Route path="/" element={<GameList />} />*/}
+           {/*<Route path="/favorites" element={<FavoriteList />} />*/}
           <Route path="/add" element={<AddFavoriteForm />} />
-         // <Route path="/login" element={<Login />} />
-          //<Route path="/game/:id" element={<GameCard />} />
-         // {/* Add fallback route */}
-          <Route path="*" element={<h2>404 - Page Not Found</h2>} />
-        //</Routes>
-      //</div>
-    //</Router>
-    <AddFavoriteForm />
+          {/*<Route path="/login" element={<Login />} /> */}
+           {/*<Route path="/game/:id" element={<GameCard />} />*/}
+           <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+        </Routes>
+      </div>
+    </Router>
+    </AddFavoriteForm>
   );
 }
 

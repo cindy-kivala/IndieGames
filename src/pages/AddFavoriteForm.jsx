@@ -1,9 +1,7 @@
-//Component to allow user to add new favorite games
-//Fetches list of favorite games list from local server and adds updates (POST)
+//Component to allow user to add new favorite games through a form
+//Fetches list of favorite games from local server and updates that list via POST
 
 import { useState } from "react"
-
-
 
 function AddFavouriteForm(){
   const [title, setTitle] = useState("");
@@ -21,15 +19,15 @@ function AddFavouriteForm(){
     
      }
 
-     //Add updates (new fav game) to local server
+     //Add updates (new favorite game) to local server 
       fetch(`${import.meta.env.VITE_APP_URL}/favorites`, {
-        method: "POST",
+        method: "POST", 
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newGame)
       })
       .then(res=>{
         if(!res.ok){
-        throw new Error("error")
+        throw new Error("error") 
       }
        return res.json()
       })
@@ -45,15 +43,12 @@ function AddFavouriteForm(){
     
     };
 
- 
-
-    //form
+    //Display form for user to add a new favorite game
     return(
       
-        <form id="Form" onSubmit={handleSubmit}>
+        <form className="Form" onSubmit={handleSubmit}>
+          
          <h1>Add A New Favorite Game</h1>
-
-
 
           <input //title
           type="text"
@@ -79,9 +74,6 @@ function AddFavouriteForm(){
            />
 
            <button type="submit">Add</button>
-          
-          
-
 
         </form>
     )
