@@ -24,5 +24,10 @@ dist-ssr
 *.sw?
 
 .env
+<<<<<<< HEAD
+=======
+.env.production
+.env.*
+>>>>>>> 73a219a5c5a9b0b866791facda5afed174f751c2
 
 .netlify/
