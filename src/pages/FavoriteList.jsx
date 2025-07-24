@@ -11,7 +11,7 @@ function FavoriteList() {
     //2. Fetch data from backend when components mond
     //ENSURE BACKEND IS WORKING CORRECTLY
     useEffect(() => {
-        fetch("http://localhost:3001/favorites")
+        fetch(`${process.env.REACT_APP_API_URL}/favorites`)
            .then((response) => {
             if (!response.ok) throw new Error("Failed to fetch")
              return response.json();
