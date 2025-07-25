@@ -3,18 +3,23 @@ import { useAuth } from "../components/Authentication";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
+  // State for user inputs and feedback
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signup } = useAuth(); 
-  const navigate = useNavigate();
   const [error, setError] = useState("");
-
+// Get signup function from auth context
+  const { signup } = useAuth();
+// to redirect after successful signup
+  const navigate = useNavigate();
+// handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // check password length before signup
     if (email && password.length >= 6) {
-      const success = await signup(email, password); 
+      const success = await signup(email, password);
       if (success) {
+        // redirect to login page with success state
         navigate("/login", { state: { signupSuccess: true }});
       } else {
         setError("Signup failed. Email may already be in use.");
@@ -29,6 +34,7 @@ export default function Signup() {
       <h2>🚀 Create Your IndieGames Account</h2>
 
       <form onSubmit={handleSubmit}>
+        
         <label>Email:</label>
         <input
           type="email"

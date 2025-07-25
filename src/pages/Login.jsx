@@ -3,22 +3,28 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../components/Authentication";
 
 export default function Login() {
+  // State for form fields and feedback
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
-  const navigate = useNavigate();
   const [error, setError] = useState("");
+// Access login function from auth context
+  const { login } = useAuth();
+// For redirecting user after login
+  const navigate = useNavigate();
+// To check if redirected from signup page
   const location = useLocation();
   const signupSuccess = location.state?.signupSuccess;
 
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
+    e.preventDefault(); // Prevent page reload
+
+    // Attempt login
     const success = await login(email, password); 
     if (success) {
-      navigate("/games"); 
+      navigate("/games"); // redirect to games 
     } else {
-      setError("Invalid email or password.");
+      setError("Invalid email or password."); // Show error on failure
     }
   };
 
@@ -27,6 +33,7 @@ export default function Login() {
       <h2>🛸 IndieGamesApp Login</h2>
 
       <form onSubmit={handleSubmit}>
+       
         <label>Email:</label>
         <input
           type="email"
