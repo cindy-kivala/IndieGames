@@ -23,7 +23,7 @@ function AppContent() {
       {shouldShowNavbar && <Navbar />}
 
       <Routes>
-        <Route path="/" element={<SignUp />} />
+       
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/games" element={<GameList />} />
