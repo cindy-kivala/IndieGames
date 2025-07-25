@@ -1,34 +1,26 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
+import React from "react";
+import GameCard from "../components/GameCard";
 
-function GameList() {
-    const [games, setGames] = useState([]);
+function GameList({ games }) {
+  const handleAddFavorite = (game) => {
+    fetch("http://localhost:3001/favorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(game),
+    });
+  };
 
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/games`)
-            .then(res => res.json())
-            .then(data => setGames(data));
-    }, []);
-
-    return (
-        <div className="List">
-            <h1>Welcome to IndieGames</h1>
-            {games.map((game, index) => (
-                <div key={index} className="game-card">
-                    <div className="row">
-                        <div className="col">
-                           
-                            <Link to={`/game/${game.id}`}
-                                    state={{game}}>
-                                <h3>{game.title}</h3>
-                                <img width="100" src={game.thumbnail} alt={game.title} />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div className="games-grid">
+      {games.length === 0 ? (
+        <p>No games found.</p>
+      ) : (
+        games.map((game) => (
+          <GameCard key={game.id} game={game} onAddFavorite={handleAddFavorite} />
+        ))
+      )}
+    </div>
+  );
 }
 
 export default GameList;

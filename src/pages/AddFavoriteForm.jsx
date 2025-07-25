@@ -1,83 +1,71 @@
-//Component to allow user to add new favorite games through a form
-//Fetches list of favorite games from local server and updates that list via POST
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useState } from "react"
-
-function AddFavouriteForm(){
+function AddFavouriteForm() {
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
   const [platform, setPlatform] = useState("");
+  const navigate = useNavigate();
 
- //function to handle form submission
-  const handleSubmit = (e)=> {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const newGame ={
-    title: title,
-    genre: genre,
-    platform: platform,
-    
-     }
+    const newGame = { title, genre, platform };
 
-     //Add updates (new favorite game) to local server 
-      fetch(`${import.meta.env.VITE_APP_URL}/favorites`, {
-        method: "POST", 
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newGame)
+    fetch("http://localhost:3001/favorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newGame),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to add favorite");
+        return res.json();
       })
-      .then(res=>{
-        if(!res.ok){
-        throw new Error("error") 
-      }
-       return res.json()
-      })
-      .then((data)=>{
+      .then(() => {
         setTitle("");
         setGenre("");
         setPlatform("");
+        navigate("/favorites");
       })
-
-       .catch((err) => {
+      .catch((err) => {
         console.error("Fetch failed:", err);
-      })
-    
-    };
+      });
+  };
 
-    //Display form for user to add a new favorite game
-    return(
-      
-        <form className="Form" onSubmit={handleSubmit}>
-          
-         <h1>Add A New Favorite Game</h1>
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <h1>Add A New Favorite Game</h1>
 
-          <input //title
-          type="text"
-          id="game-title"
-          value={title}
-          placeholder="Enter Game Title"
-           onChange={((e)=> setTitle(e.target.value))}   
-          />
+      <input
+        type="text"
+        id="game-title"
+        value={title}
+        placeholder="Enter Game Title"
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-          <input //genre
-          type="text"
-          id="game-genre"
-          value={genre}
-          placeholder="Enter Game Genre"
-          onChange={(e) => setGenre(e.target.value)}
-           />
-            <input //platform
-          type="text"
-          id="gaming-platform"
-          value={platform}
-          placeholder="Enter platform e.g PC "
-          onChange={(e) => setPlatform(e.target.value)}
-           />
+      <input
+        type="text"
+        id="game-genre"
+        value={genre}
+        placeholder="Enter Game Genre"
+        onChange={(e) => setGenre(e.target.value)}
+      />
 
-           <button type="submit">Add</button>
+      <input
+        type="text"
+        id="gaming-platform"
+        value={platform}
+        placeholder="Enter platform e.g PC"
+        onChange={(e) => setPlatform(e.target.value)}
+      />
 
-        </form>
-    )
+      {/* ✅ Add button */}
+      <button type="submit" className="add-button">
+        Add
+      </button>
+    </form>
+  );
 }
-
 
 export default AddFavouriteForm;
