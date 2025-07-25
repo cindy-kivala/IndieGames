@@ -139,6 +139,17 @@ body {
 
 
 
+
+.gamecard h2 {
+  color: #ff5aff;
+  text-shadow: 0 0 6px #ff00cc, 0 0 12px #00ffee;
+}
+
+.gamecard p {
+  color: #c2ffff;
+  font-size: 0.95rem;
+}
+
 .gamecard,
 .favorite-game-card,
 .game-card {
@@ -157,14 +168,14 @@ body {
 .gamecard:hover,
 .favorite-game-card:hover,
 .game-card:hover {
-  transform: scale(1.03);
+   transform: scale(1.03);
   box-shadow: 0 0 25px #00ffeeaa;
 }
 
 .gamecard img,
 .favorite-game-card img,
 .game-card img {
-  max-width: 100%;
+    max-width: 100%;
   border-radius: 0.8rem;
   margin-top: 1rem;
 }
