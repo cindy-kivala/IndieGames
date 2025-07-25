@@ -134,3 +134,151 @@ body {
   color: #00ff88 !important;
   font-weight: bold;
 }
+
+
+
+
+
+.gamecard,
+.favorite-game-card,
+.game-card {
+  background: rgba(15, 15, 30, 0.85);
+  border: 2px solid #00ffcc;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem;
+  box-shadow: 0 0 15px #00ffee55;
+  text-align: center;
+  color: #e0ffff;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease;
+}
+
+.gamecard:hover,
+.favorite-game-card:hover,
+.game-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px #00ffeeaa;
+}
+
+.gamecard img,
+.favorite-game-card img,
+.game-card img {
+  max-width: 100%;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+}
+
+.List h1,
+.favorite-list h2,
+.favorite-list-container h2 {
+  color: #ff5aff;
+  text-shadow: 0 0 6px #ff00cc, 0 0 12px #00ffee;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.favorite-list-container,
+.List {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.favorite-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.RemoveBtn {
+  background: #ff4b5c;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ff4b5c88;
+  transition: background 0.3s;
+}
+
+.RemoveBtn:hover {
+  background: #ff1c3d;
+  box-shadow: 0 0 20px #ff4b5caa;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-bottom: 2px solid #00ffee88;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #00ffee;
+  text-shadow: 0 0 8px #00ffeeaa;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #00ffee;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #00ffaa;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  box-shadow: inset 0 0 6px #00ffaa44;
+}
+
+.search-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(45deg, #00ffaa, #00ffee);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ffaa88;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  background: linear-gradient(45deg, #00ffee, #00ffaa);
+  box-shadow: 0 0 20px #00ffaaaa;
+}
+
