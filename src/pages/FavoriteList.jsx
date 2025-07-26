@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 //set up our state
 function FavoriteList() {
   const [favorites, setFavorites] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch data from backend when component mounts
   useEffect(() => {
-    fetch("http://localhost:3001/favorites")
+    fetch(`${API_URL}/favorites`)
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch");
         return response.json();
@@ -28,7 +29,7 @@ function FavoriteList() {
 
   // Delete favorite by id
   function handleDelete(id) {
-    fetch(`http://localhost:3001/favorites/${id}`, {
+    fetch(`${API_URL}/favorites/${id}`, {
       method: "DELETE",
     })
       .then(() => {

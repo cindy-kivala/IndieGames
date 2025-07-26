@@ -2,8 +2,9 @@ import React from "react";
 import GameCard from "../components/GameCard";
 
 function GameList({ games }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleAddFavorite = (game) => {
-    fetch("http://localhost:3001/favorites", {
+    fetch(`${API_URL}/favorites`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(game),

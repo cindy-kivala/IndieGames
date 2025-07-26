@@ -23,7 +23,7 @@ function AppContent() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3001/games")
+    fetch(`${import.meta.env.VITE_API_URL}/games`)
       .then((res) => res.json())
       .then(setGames);
   }, []);

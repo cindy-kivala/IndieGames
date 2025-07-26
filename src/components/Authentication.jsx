@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 // Create auth context
 export const AuthContext = createContext();
@@ -23,7 +25,7 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       const cleanedEmail = email.trim().toLowerCase();
-      const res = await fetch(`http://localhost:3001/users?email=${cleanedEmail}`);
+      const res = await fetch(`${API_URL}/users?email=${cleanedEmail}`);
       const users = await res.json();
       const user = users[0];
 
@@ -48,12 +50,12 @@ export function AuthProvider({ children }) {
       const cleanedEmail = email.trim().toLowerCase();
 
       // Check if user already exists
-      const res = await fetch(`http://localhost:3001/users?email=${cleanedEmail}`);
+      const res = await fetch(`${API_URL}/users?email=${cleanedEmail}`);
       const data = await res.json();
       if (data.length > 0) return false;
 
       // Create new user
-      const response = await fetch(`http://localhost:3001/users`, {
+      const response = await fetch(`${API_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: cleanedEmail, password }),

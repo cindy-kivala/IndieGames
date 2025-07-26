@@ -11,8 +11,9 @@ function AddFavouriteForm() {
     e.preventDefault();
 
     const newGame = { title, genre, platform };
+    const API_URL = import.meta.env.VITE_API_URL;
 
-    fetch("http://localhost:3001/favorites", {
+    fetch(`${API_URL}/favorites`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newGame),
